@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "ES2021",
+        "strict": true,
+        "lib": [
+            "DOM",
+            "ES2021"
+        ]
+    }
+}
