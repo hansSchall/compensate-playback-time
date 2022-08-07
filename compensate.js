@@ -77,7 +77,7 @@ class Compensator extends EventTarget {
             // set currentTime
             this.el.playbackRate = 1;
             if (this.timeSetLock + (this.options.timeSetLockTime || 1000) < performance.now()) {
-                this.el.currentTime = this.timeMediaShouldBe;
+                this.el.currentTime = this.timeMediaShouldBe / 1000;
                 this.timeSetLock = performance.now();
             }
         }
