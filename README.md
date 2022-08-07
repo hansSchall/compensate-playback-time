@@ -7,23 +7,64 @@ Delays caused by a lack of data or slow decoding will be compensated by adjustin
 
 Copy `compensate.ts` or `compensate.js` to your project. To use ES6 imports simply add a `export` before the class definition.
 
-## Usage
+## Usage / API
 
 Full example see files `test.html` and `test.ts`
 
 ````typescript
-compensator = new Compensator(videoOrAudioElement, {
+const compensator = new Compensator(videoOrAudioElement, {
     // ... options (see JSdoc in code)
 })
+````
+`videoOrAudioElement` extends HTMLMediaElement
+
+---
+
+***IMPORTANT:***
+
+*Do NOT do anything on the media element yourself other than adding eventListeners*
+
+---
+
+````typescript
 compensator.play();
+````
+equivalent to HTMLMediaElement.play()
+
+---
+
+````typescript
 compensator.pause();
 ````
+equivalent to HTMLMediaElement.pause()
 
-Table 1: Instance properies
+---
 
-|property/method|description|
-|---------------|-----------|
-|.play()        |equivalent HTMLMediaElement.play()|
-|.pause()       |equivalent HTMLMediaElement.pause()|
-|.startFromTheBeginning()|self explaining|
-|.time          |getter/setter playback time|
+````typescript
+console.log(compensator.time)
+````
+gets the current time in milliseconds
+
+---
+
+````typescript
+compensator.time = 5000;
+````
+sets the current time in milliseconds
+
+---
+
+````typescript
+compensator.startFromTheBeginning()
+````
+
+---
+
+````typescript
+compensator.addEventListener("loopback", cb);
+````
+fired when the end is reached and `options.loop == true`
+
+---
+
+(c) 2022 Hans Schallmoser - All rights reserved
